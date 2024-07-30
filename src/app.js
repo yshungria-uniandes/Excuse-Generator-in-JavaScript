@@ -1,3 +1,46 @@
+// /* eslint-disable */
+// import "bootstrap";
+// import "./style.css";
+
+// import "./assets/img/rigo-baby.jpg";
+// import "./assets/img/4geeks.ico";
+
+// window.onload = function() {
+//   let who = ["The dog", "My grandma", "The mailman", "My bird"];
+//   let action = [" ate ", " peed on ", " crushed ", " broke "];
+//   let what = ["my homework", "my phone", "the car"];
+//   let when = [
+//     "before the class",
+//     "when I was sleeping",
+//     "while I was exercising",
+//     "during my lunch",
+//     "while I was praying"
+//   ];
+
+//   function generateExcuse() {
+//     let rdmWho = Math.floor(Math.random() * who.length);
+//     let rdmAction = Math.floor(Math.random() * action.length);
+//     let rdmWhat = Math.floor(Math.random() * what.length);
+//     let rdmWhen = Math.floor(Math.random() * when.length);
+
+//     return (
+//       who[rdmWho] + action[rdmAction] + what[rdmWhat] + " " + when[rdmWhen]
+//     );
+//   }
+
+//   let button = document.createElement("button");
+//   button.innerHTML = "Generate Excuse";
+//   button.className = "excuse-button";
+//   button.addEventListener("click", function() {
+//     document.querySelector("#excuse").innerHTML = generateExcuse();
+//   });
+
+//   let buttonContainer = document.getElementById("button-container");
+//   buttonContainer.appendChild(button);
+// };
+
+// Codigo Refactorizado / Coding Guidelines Challenge
+
 /* eslint-disable */
 import "bootstrap";
 import "./style.css";
@@ -6,10 +49,10 @@ import "./assets/img/rigo-baby.jpg";
 import "./assets/img/4geeks.ico";
 
 window.onload = function() {
-  let who = ["The dog", "My grandma", "The mailman", "My bird"];
-  let action = [" ate ", " peed on ", " crushed ", " broke "];
-  let what = ["my homework", "my phone", "the car"];
-  let when = [
+  const who = ["The dog", "My grandma", "The mailman", "My bird"];
+  const actions = ["ate", "peed on", "crushed", "broke"];
+  const what = ["my homework", "my phone", "the car"];
+  const when = [
     "before the class",
     "when I was sleeping",
     "while I was exercising",
@@ -17,24 +60,26 @@ window.onload = function() {
     "while I was praying"
   ];
 
-  function generateExcuse() {
-    let rdmWho = Math.floor(Math.random() * who.length);
-    let rdmAction = Math.floor(Math.random() * action.length);
-    let rdmWhat = Math.floor(Math.random() * what.length);
-    let rdmWhen = Math.floor(Math.random() * when.length);
-
-    return (
-      who[rdmWho] + action[rdmAction] + what[rdmWhat] + " " + when[rdmWhen]
-    );
+  function getRandomElement(array) {
+    return array[Math.floor(Math.random() * array.length)];
   }
 
-  let button = document.createElement("button");
-  button.innerHTML = "Generate Excuse";
+  function generateExcuse() {
+    const subject = getRandomElement(who);
+    const action = getRandomElement(actions);
+    const object = getRandomElement(what);
+    const timing = getRandomElement(when);
+
+    return `${subject} ${action} ${object} ${timing}`;
+  }
+
+  const button = document.createElement("button");
+  button.textContent = "Generate Excuse";
   button.className = "excuse-button";
   button.addEventListener("click", function() {
-    document.querySelector("#excuse").innerHTML = generateExcuse();
+    document.querySelector("#excuse").textContent = generateExcuse();
   });
 
-  let buttonContainer = document.getElementById("button-container");
+  const buttonContainer = document.getElementById("button-container");
   buttonContainer.appendChild(button);
 };
